@@ -1,0 +1,7 @@
+# Copyright Contributors to the Open Cluster Management project
+
+apiVersion: v1
+description: A Helm chart to install subscription, deployable and helm-crd controllers
+name: application-manager
+version: 2.5.0
+appVersion: "2.5.0"

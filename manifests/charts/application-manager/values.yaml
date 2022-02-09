@@ -1,0 +1,39 @@
+
+org: open-cluster-management
+
+enabled: true
+nameOverride: application-manager
+fullnameOverride: application-manager
+
+hubKubeConfigSecret: null
+
+clusterName: null
+clusterNamespace: null
+
+affinity: {}
+
+tolerations:
+- key: "dedicated"
+  operator: "Equal"
+  value: "infra"
+  effect: "NoSchedule"
+- key: node-role.kubernetes.io/infra
+  operator: Exists
+  effect: NoSchedule
+
+resources:
+  requests:
+    memory: 128Mi
+  limits:
+    memory: 2Gi
+
+global: 
+  imagePullPolicy: IfNotPresent
+  imagePullSecret: open-cluster-management-image-pull-credentials
+  imageOverrides: 
+    multicluster_operators_subscription: quay.io/open-cluster-management/multicluster-operators-subscription:1.0.0
+  nodeSelector: {}
+  proxyConfig:
+    HTTP_PROXY: null
+    HTTPS_PROXY: null
+    NO_PROXY: null
